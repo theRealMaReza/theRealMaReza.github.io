@@ -47,5 +47,6 @@ Push the change and the **"Trailer Coming Soon"** box automatically turns into a
 
 ## 4. Trailer Audio Credits
 
+- **Instrument-free human choir & vocal tracks:** [A cappella - Arabian nights](https://freesound.org/people/Vrymaa/sounds/738836/) by Vrymaa (CC BY 4.0) and [Touchstone (vocals only)](https://freesound.org/people/SondreDrakensson/sounds/811110/) by SondreDrakensson (CC BY 4.0).
 - **Siege fire & cracking timber:** [WWS Fireoftheforge.ogg](https://commons.wikimedia.org/wiki/File:WWS_Fireoftheforge.ogg) (CC BY 4.0) and [Bones breaking wood fire ice crackling.ogg](https://commons.wikimedia.org/wiki/File:Bones_breaking_wood_fire_ice_crackling.ogg) (Public Domain).
 - **Sound effects & natural ambience:** CC0 / MIT non-musical SFX from Gez (`ambience_wind`, `ambience_city`, cannon, siege thud, musket, sword clash, marching boots, hoofbeats, wood/parchment UI, and coin clink).
