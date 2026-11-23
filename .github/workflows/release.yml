@@ -1,0 +1,98 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release tag (e.g. v0.2-kayser)"
+        required: true
+        type: string
+      notes:
+        description: "Optional short release notes"
+        required: false
+        default: "Alpha build of Gez for Mac, Windows, and Linux."
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish-release:
+    name: Publish Gez download release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find latest passing exports from game repo
+        env:
+          SOURCE_REPO: theRealMaReza/gez
+          GAME_GH_TOKEN: ${{ secrets.GAME_TOKEN || github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          echo "Checking recent CI runs on ${SOURCE_REPO} (main)..."
+          RUN_ID=$(
+            GH_TOKEN="$GAME_GH_TOKEN" gh api \
+              "repos/${SOURCE_REPO}/actions/workflows/ci.yml/runs?branch=main&status=completed&per_page=25" \
+              --jq '.workflow_runs[] | select(.conclusion == "success" or .conclusion == "failure") | .id' \
+            | while read -r id; do
+                ARTIFACTS=$(GH_TOKEN="$GAME_GH_TOKEN" gh api "repos/${SOURCE_REPO}/actions/runs/${id}/artifacts" --jq '[.artifacts[] | select(.expired == false) | .name] | join(",")')
+                if [[ "$ARTIFACTS" == *"gez-godot-macos"* && "$ARTIFACTS" == *"gez-godot-windows"* && "$ARTIFACTS" == *"gez-godot-linux"* ]]; then
+                  echo "$id"
+                  break
+                fi
+              done
+          )
+
+          if [ -z "$RUN_ID" ]; then
+            echo "::error::Could not find a recent main CI run with Mac, Windows, and Linux artifacts. If the game repo is private (or cross-repo artifact download needs auth), add a GAME_TOKEN secret with Actions:Read on ${SOURCE_REPO}."
+            exit 1
+          fi
+
+          echo "Using CI run ${RUN_ID} from ${SOURCE_REPO}"
+
+          download_artifact() {
+            local artifact_name="$1"
+            local expected_pattern="$2"
+            local out_name="$3"
+
+            local aid
+            aid=$(GH_TOKEN="$GAME_GH_TOKEN" gh api "repos/${SOURCE_REPO}/actions/runs/${RUN_ID}/artifacts" \
+              --jq ".artifacts[] | select(.name == \"${artifact_name}\") | .id" | head -n1)
+
+            if [ -z "$aid" ]; then
+              echo "::error::Missing artifact ${artifact_name}"
+              exit 1
+            fi
+
+            mkdir -p "tmp_${artifact_name}"
+            curl -fsSL -H "Authorization: Bearer ${GAME_GH_TOKEN}" \
+              -L "https://api.github.com/repos/${SOURCE_REPO}/actions/artifacts/${aid}/zip" \
+              -o "tmp_${artifact_name}/bundle.zip"
+            unzip -q -o "tmp_${artifact_name}/bundle.zip" -d "tmp_${artifact_name}/inner"
+
+            local found
+            found=$(find "tmp_${artifact_name}/inner" -maxdepth 2 -type f -name "${expected_pattern}" | head -n1)
+            if [ -z "$found" ]; then
+              echo "::error::Could not find ${expected_pattern} inside ${artifact_name}"
+              exit 1
+            fi
+
+            mv "$found" "dist/${out_name}"
+            rm -rf "tmp_${artifact_name}"
+          }
+
+          download_artifact "gez-godot-macos" "Gez-macOS*.zip" "Gez-Mac.zip"
+          download_artifact "gez-godot-windows" "Gez-Windows*.zip" "Gez-Windows.zip"
+          download_artifact "gez-godot-linux" "Gez-Linux*.tar.gz" "Gez-Linux.tar.gz"
+          ls -lh dist/
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ inputs.version }}" \
+            dist/Gez-Mac.zip \
+            dist/Gez-Windows.zip \
+            dist/Gez-Linux.tar.gz \
+            --title "Gez ${{ inputs.version }}" \
+            --notes "${{ inputs.notes }}"
