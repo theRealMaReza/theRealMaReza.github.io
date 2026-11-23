@@ -14,7 +14,7 @@ window.GEZ_CONFIG = {
   // Leave both empty ("") to show the "Trailer Coming Soon" showcase frame.
   trailer: {
     youtubeUrl: "",
-    mp4Url: "",
+    mp4Url: "assets/trailer.mp4",
     comingSoonNote: "Official gameplay trailer is in the works. Explore the live screenshots below while alpha builds are updated."
   },
 

@@ -102,10 +102,18 @@
   const ytId = extractYoutubeId(trailerCfg.youtubeUrl);
   const hasTrailer = Boolean(ytId || trailerCfg.mp4Url);
 
+  const heroTrailerBtn = document.getElementById("hero-trailer-btn");
   const heroTrailerLabel = document.getElementById("hero-trailer-label");
   if (heroTrailerLabel && hasTrailer) {
     heroTrailerLabel.textContent = "Watch Trailer";
   }
+  heroTrailerBtn?.addEventListener("click", () => {
+    if (hasTrailer) {
+      currentIdx = 0;
+      trailerPlaying = true;
+      renderCarousel();
+    }
+  });
 
   const MEDIA = [
     {
