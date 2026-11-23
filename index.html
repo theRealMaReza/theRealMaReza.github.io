@@ -17,147 +17,205 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#top" class="brand">
-        <span class="medallion" aria-hidden="true">G</span>
-        <span class="brand-title">GEZ</span>
-        <span class="brand-date">30 May 1453</span>
+  <!-- Compact Top Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#top" class="nav-brand">
+        <span class="nav-logo">GEZ</span>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <span class="nav-era">1453</span>
       </a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#trailer">Trailer</a>
-        <a href="#features">See the Game</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#download" class="btn-gold">Download</a>
+
+      <nav class="nav-menu" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#media">Media</a>
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
       </nav>
+
+      <div class="nav-actions">
+        <a id="nav-download-btn" href="#download" class="btn-header">Download</a>
+      </div>
     </div>
   </header>
 
   <main id="top">
-    <!-- Hero Section -->
+    <!-- Full-Bleed Cinematic Hero -->
     <section class="hero">
-      <div class="hero-backdrop" aria-hidden="true"></div>
-      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="hero-media" aria-hidden="true">
+        <img src="assets/map-balkans.webp" alt="" />
+        <div class="hero-scrim"></div>
+      </div>
 
-      <div class="container hero-grid">
-        <!-- Download & Title Card -->
-        <div class="parchment gold-frame hero-card">
-          <div class="crimson-ribbon">GEZ</div>
-          <p class="hero-tagline">Grand Strategy from 30 May 1453</p>
-          <p class="hero-desc">
-            Lead a 15th-century realm across 1,378+ provinces. Run your court, forge trade routes, and take direct command of real-time battles and sieges.
-          </p>
+      <div class="hero-content container">
+        <div class="eyebrow">Grand Strategy · 30 May 1453</div>
+        <h1 class="hero-title">GEZ</h1>
+        <p class="hero-subtitle">
+          Rule a living 15th-century realm. Shape diplomacy, command trade routes, and lead tactical real-time battles and sieges.
+        </p>
 
-          <div class="download-stack">
-            <a id="primary-download-btn" href="#download" class="btn-gold">
-              Download Alpha
-            </a>
-            <div class="secondary-os-row" id="secondary-download-row">
-              <!-- Populated by app.js based on visitor OS -->
+        <div class="hero-cta-row">
+          <a id="hero-download-btn" href="#download" class="btn-solid">
+            <span>Download Alpha</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="#media" class="btn-ghost" id="hero-trailer-btn">
+            <span aria-hidden="true">▶</span>
+            <span id="hero-trailer-label">Trailer &amp; Media</span>
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span id="release-status">Free Alpha · macOS, Windows &amp; Linux</span>
+          <span class="meta-dot" aria-hidden="true">·</span>
+          <span id="hero-alt-os" class="alt-os-links"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Intro Band -->
+    <section id="about" class="section intro-section">
+      <div class="container narrow-col">
+        <div class="eyebrow">A New Era Begins</div>
+        <h2 class="display-heading">From the Fall of Constantinople to Global Empire</h2>
+        <p class="lead-copy">
+          Starting on <strong>30 May 1453</strong>, Gez blends deep real-time-with-pause grand strategy with historical characters and direct tactical battlefield command. Pause at any day to manage your estates, sign treaties, or deploy formations on the field.
+        </p>
+      </div>
+    </section>
+
+    <!-- Media Carousel (Trailer + Screenshots) -->
+    <section id="media" class="section media-section">
+      <div class="container section-header">
+        <div class="eyebrow">Media</div>
+        <h2 class="display-heading">Immerse yourself in Gez</h2>
+      </div>
+
+      <div class="carousel-viewport">
+        <div class="carousel-stage">
+          <button class="carousel-peek carousel-peek-left" id="peek-prev" type="button" aria-label="Previous media item">
+            <img id="peek-prev-img" src="" alt="" />
+          </button>
+
+          <div class="carousel-active" id="carousel-active">
+            <!-- Populated dynamically by app.js -->
+          </div>
+
+          <button class="carousel-peek carousel-peek-right" id="peek-next" type="button" aria-label="Next media item">
+            <img id="peek-next-img" src="" alt="" />
+          </button>
+        </div>
+
+        <div class="carousel-caption-bar container">
+          <div id="carousel-title" class="carousel-caption-title"></div>
+          <div id="carousel-desc" class="carousel-caption-desc"></div>
+        </div>
+
+        <div class="carousel-controls" aria-label="Media pagination">
+          <button id="media-prev" class="pager-arrow" type="button">‹ Previous</button>
+          <div id="media-dots" class="pager-numbers"></div>
+          <button id="media-next" class="pager-arrow" type="button">Next ›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Features -->
+    <section id="features" class="section features-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">Key Features</div>
+          <h2 class="display-heading">Grand Strategy, Uncompromised</h2>
+        </div>
+
+        <div class="editorial-rows">
+          <article class="editorial-row">
+            <div class="editorial-media" data-lightbox-index="1">
+              <img src="assets/map-world.webp" alt="1453 World Map" loading="lazy" />
             </div>
-          </div>
+            <div class="editorial-copy">
+              <div class="eyebrow">1,378+ Provinces</div>
+              <h3>A Living 1453 World</h3>
+              <p>
+                Explore a seamless map that renders like an antique painted chart from orbit and zooms down to terrain, forests, towns, and moving fleets. Switch effortlessly across political, religion, culture, goods, and market lenses.
+              </p>
+              <ul class="feature-list">
+                <li>Daily simulation with pause and 5 game speeds</li>
+                <li>Reign-by-reign Chronicle, Ledger graphs, and Map Timelapse</li>
+                <li>70+ historical events shaping early modern empires</li>
+              </ul>
+            </div>
+          </article>
 
-          <div id="release-status" class="version-pill">
-            Free Alpha Build · Mac, Windows &amp; Linux
-          </div>
-        </div>
+          <article class="editorial-row editorial-row-reverse">
+            <div class="editorial-media" data-lightbox-index="3">
+              <img src="assets/battle.webp" alt="Tactical Field Battle" loading="lazy" />
+            </div>
+            <div class="editorial-copy">
+              <div class="eyebrow">Field &amp; Siege Command</div>
+              <h3>Fight Every Battle—or Auto-Resolve</h3>
+              <p>
+                Step onto the battlefield in Total War–style real-time engagements. Position regiments, choose formations, and time your charges and volleys—or let your generals resolve minor skirmishes instantly.
+              </p>
+              <ul class="feature-list">
+                <li>Formations: Line, Column, Wedge, Square, Wagons, and Skirmish</li>
+                <li>Stances: Hold, Advance, Charge, Volley, and Hold Fire</li>
+                <li>Full morale, fatigue, terrain, and siege mechanics</li>
+              </ul>
+            </div>
+          </article>
 
-        <!-- Trailer Showcase Frame -->
-        <div id="trailer" class="gold-frame trailer-shell">
-          <div id="trailer-stage" class="trailer-stage">
-            <!-- Populated by app.js: live video when configured, or interactive coming-soon poster -->
-          </div>
-          <div class="trailer-bar">
-            <span id="trailer-bar-text">Trailer slot ready — currently showing gameplay preview</span>
-            <a href="#gallery" class="btn-outline-gold">View Screenshots</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Feature Spotlight -->
-    <section id="features" class="section">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Inside the Realm</div>
-          <h2>See the Game</h2>
-          <p>Real-time-with-pause grand strategy paired with tactical field battles and historical 1453 rulers.</p>
-        </div>
-
-        <div class="feature-tabs" role="tablist" aria-label="Game features">
-          <button class="feature-tab is-active" data-feature="map" role="tab" aria-selected="true">1453 Living Map</button>
-          <button class="feature-tab" data-feature="battles" role="tab" aria-selected="false">Tactical Battles</button>
-          <button class="feature-tab" data-feature="court" role="tab" aria-selected="false">Dynasty &amp; Court</button>
-          <button class="feature-tab" data-feature="trade" role="tab" aria-selected="false">Trade &amp; Diplomacy</button>
-        </div>
-
-        <div class="parchment gold-frame spotlight-card">
-          <div class="spotlight-media" id="spotlight-media" title="Click to enlarge">
-            <img id="spotlight-img" src="assets/map-balkans.webp" alt="Gez 3D Grand Strategy Map" />
-            <span class="zoom-hint">Click to zoom</span>
-          </div>
-          <div class="spotlight-body">
-            <h3 id="spotlight-title">1453 Living Map</h3>
-            <p id="spotlight-desc">
-              Explore a richly detailed 3D world painted like an antique chart from afar, zooming down to towns, coastlines, forests, and marching armies.
-            </p>
-            <ul id="spotlight-points" class="spotlight-points">
-              <li>Daily simulation with pause and 5 game speeds</li>
-              <li>Multiple map modes: political, terrain, religion, culture, goods, and markets</li>
-              <li>Chronicle by reign, ledger graphs, and map timelapse</li>
-            </ul>
-          </div>
+          <article class="editorial-row">
+            <div class="editorial-media" data-lightbox-index="4">
+              <img src="assets/court.webp" alt="Court and Ruling Family" loading="lazy" />
+            </div>
+            <div class="editorial-copy">
+              <div class="eyebrow">Dynasty, Trade &amp; Diplomacy</div>
+              <h3>Rule by Bloodline, Coin &amp; Treaty</h3>
+              <p>
+                Every realm opens with real historical rulers of 1453, illuminated portraits, traits, and council politics. Balance estates at home while routing raw silk across Black Sea markets and forging shifting alliances abroad.
+              </p>
+              <ul class="feature-list">
+                <li>Succession laws, estates, privileges, and councilors</li>
+                <li>Overland and sea trade routes with dynamic toll policy</li>
+                <li>Alliances, guarantees, embargoes, and war negotiations</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Screenshot Gallery -->
-    <section id="gallery" class="section section-alt">
+    <!-- Download Section -->
+    <section id="download" class="section download-section">
       <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Alpha Visuals</div>
-          <h2>Screenshot Gallery</h2>
-          <p>Click any screenshot to view it full screen.</p>
+        <div class="section-header">
+          <div class="eyebrow">Play Free Alpha</div>
+          <h2 class="display-heading">Download Gez</h2>
+          <p class="section-sub">Standalone desktop builds. Local saves, no account required.</p>
         </div>
 
-        <div class="gallery-grid" id="gallery-grid">
-          <!-- Populated by app.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Download & First-Time Launch Guide -->
-    <section id="download" class="section">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Play the Alpha</div>
-          <h2>Download Gez</h2>
-          <p>Choose your platform below. Saves stay local on your machine.</p>
-        </div>
-
-        <div class="download-grid" id="download-grid">
+        <div class="platform-grid" id="platform-grid">
           <!-- Populated by app.js -->
         </div>
 
-        <div class="gold-frame install-guide">
-          <h3>How to Open (Unsigned Alpha Builds)</h3>
-          <div class="install-steps">
+        <div class="launch-notes">
+          <div class="launch-notes-title">First-Time Launch (Unsigned Alpha Builds)</div>
+          <div class="launch-notes-grid">
             <div>
               <strong>macOS</strong>
-              Unzip <code>Gez-Mac.zip</code> and drag <code>Gez.app</code> to Applications. The first time, <strong>Right-click → Open</strong> (Apple Gatekeeper warns on unsigned apps).
+              <span>Unzip <code>Gez-Mac.zip</code>, move <code>Gez.app</code> to Applications, then <strong>Right-click → Open</strong> the first time.</span>
             </div>
             <div>
               <strong>Windows</strong>
-              Extract <code>Gez-Windows.zip</code> and open <code>Gez.exe</code>. If SmartScreen appears, click <strong>More info → Run anyway</strong>.
+              <span>Extract <code>Gez-Windows.zip</code> and launch <code>Gez.exe</code>. In SmartScreen, click <strong>More info → Run anyway</strong>.</span>
             </div>
             <div>
               <strong>Linux</strong>
-              Extract <code>Gez-Linux.tar.gz</code>, ensure <code>Gez.x86_64</code> is executable, and launch <code>./Gez.x86_64</code>.
+              <span>Extract <code>Gez-Linux.tar.gz</code> and run <code>./Gez.x86_64</code>.</span>
             </div>
           </div>
         </div>
@@ -166,24 +224,28 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <div>© 2026 Gez. All rights reserved. · Built for Mac, Windows &amp; Linux.</div>
+    <div class="container footer-inner">
+      <span class="footer-brand">GEZ</span>
+      <span class="footer-copy">© 2026 Gez. All rights reserved. · Built for macOS, Windows &amp; Linux.</span>
     </div>
   </footer>
 
+  <!-- Floating Back-to-Top Square -->
+  <a href="#top" class="back-to-top" id="back-to-top" aria-label="Back to top">↑</a>
+
   <!-- Full-Screen Lightbox -->
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
-    <div class="gold-frame lightbox-inner">
+    <div class="lightbox-frame">
       <img id="lightbox-img" src="" alt="" />
-      <div class="lightbox-bar">
-        <div class="lightbox-caption">
-          <strong id="lightbox-title"></strong>
-          <span id="lightbox-desc"></span>
+      <div class="lightbox-footer">
+        <div>
+          <div id="lightbox-title" class="lightbox-title"></div>
+          <div id="lightbox-desc" class="lightbox-desc"></div>
         </div>
-        <div class="lightbox-actions">
-          <button id="lb-prev" class="btn-outline-gold" type="button" aria-label="Previous screenshot">← Prev</button>
-          <button id="lb-next" class="btn-outline-gold" type="button" aria-label="Next screenshot">Next →</button>
-          <button id="lb-close" class="btn-gold" type="button" aria-label="Close viewer">Close</button>
+        <div class="lightbox-controls">
+          <button id="lb-prev" class="btn-ghost-sm" type="button">‹ Prev</button>
+          <button id="lb-next" class="btn-ghost-sm" type="button">Next ›</button>
+          <button id="lb-close" class="btn-solid-sm" type="button">Close</button>
         </div>
       </div>
     </div>
