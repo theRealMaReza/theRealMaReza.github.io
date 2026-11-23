@@ -121,7 +121,7 @@
       thumb: hasTrailer ? "assets/trailer-thumb.webp" : "assets/battle.webp",
       title: hasTrailer ? "Official Alpha Trailer" : "Official Trailer — Coming Soon",
       desc: hasTrailer
-        ? "Two Sides of Rule — Quiet court diplomacy and Silk Road trade contrasted with naval, field, and siege warfare."
+        ? "From Edirne to Konstantiniyye — young Mehmed studies, trains, marches, and rises as Kayser-e Rum."
         : trailerCfg.comingSoonNote || "Trailer in production. Click to tour alpha gameplay screenshots."
     },
     {
