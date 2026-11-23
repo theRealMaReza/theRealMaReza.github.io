@@ -42,3 +42,10 @@ trailer: {
 ```
 
 Push the change and the **"Trailer Coming Soon"** box automatically turns into a playable video player.
+
+---
+
+## 4. Trailer Audio Credits
+
+- **Sufi *a cappella* Masnavi vocal chant:** [MasnaviRamazaan-BaazKhaani160.ogg](https://commons.wikimedia.org/wiki/File:MasnaviRamazaan-BaazKhaani160.ogg) by Saeed Hatamzadeh-Varmazyar, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **Sound effects & natural ambience:** CC0 / MIT non-musical SFX from Gez (`ambience_wind`, `ambience_city`, `ambience_sea`, cannon, siege thud, sword clash, marching boots, hoofbeats, coin clink, and parchment UI).
