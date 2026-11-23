@@ -94,5 +94,7 @@ jobs:
             dist/Gez-Mac.zip \
             dist/Gez-Windows.zip \
             dist/Gez-Linux.tar.gz \
+            --repo "${{ github.repository }}" \
+            --target "${{ github.ref_name }}" \
             --title "Gez ${{ inputs.version }}" \
             --notes "${{ inputs.notes }}"
