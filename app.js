@@ -118,10 +118,10 @@
   const MEDIA = [
     {
       type: "trailer",
-      thumb: "assets/battle.webp",
-      title: hasTrailer ? "Official Gameplay Trailer" : "Official Trailer — Coming Soon",
+      thumb: hasTrailer ? "assets/trailer-thumb.webp" : "assets/battle.webp",
+      title: hasTrailer ? "Official Alpha Trailer" : "Official Trailer — Coming Soon",
       desc: hasTrailer
-        ? "Watch Gez in motion across campaign map, court, and tactical battles."
+        ? "30 May 1453 — From Constantinople and the Alps to India, diplomacy, trade, and real-time battles."
         : trailerCfg.comingSoonNote || "Trailer in production. Click to tour alpha gameplay screenshots."
     },
     {
