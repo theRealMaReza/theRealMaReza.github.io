@@ -121,7 +121,7 @@
       thumb: hasTrailer ? "assets/trailer-thumb.webp" : "assets/battle.webp",
       title: hasTrailer ? "Official Alpha Trailer" : "Official Trailer — Coming Soon",
       desc: hasTrailer
-        ? "Constantinople, 1453 — The breach of the walls, Sultan Mehmed II's address, and the dawn of an empire."
+        ? "Two Sides of Rule — Quiet court diplomacy and Silk Road trade contrasted with naval, field, and siege warfare."
         : trailerCfg.comingSoonNote || "Trailer in production. Click to tour alpha gameplay screenshots."
     },
     {
