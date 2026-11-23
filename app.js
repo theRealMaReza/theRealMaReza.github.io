@@ -121,7 +121,7 @@
       thumb: hasTrailer ? "assets/trailer-thumb.webp" : "assets/battle.webp",
       title: hasTrailer ? "Official Alpha Trailer" : "Official Trailer — Coming Soon",
       desc: hasTrailer
-        ? "30 May 1453 — From Constantinople and the Alps to India, diplomacy, trade, and real-time battles."
+        ? "Constantinople, 1453 — The breach of the walls, Sultan Mehmed II's address, and the dawn of an empire."
         : trailerCfg.comingSoonNote || "Trailer in production. Click to tour alpha gameplay screenshots."
     },
     {
